@@ -1,23 +1,24 @@
-import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData  } from '../lib/posts';
+import Head from 'next/head'
+import Layout, { siteTitle } from '../components/layout'
+import utilStyles from '../styles/utils.module.css'
+import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
+import { GetStaticProps } from 'next'
 
 /**
  * By returning allPostsData inside the props object in getStaticProps, the blog posts will be passed to the Home component
  * as a prop.
  */
-export async function getStaticProps() { // --> Runs on the server-side. It will never run on the client-side
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps = async () => { // --> Runs on the server-side. It will never run on the client-side
+  const allPostsData = getSortedPostsData()
   return {
     props: {
-      allPostsData,
-    },
+      allPostsData
+    }
   }
 }
-export default function Home({ allPostsData }) {
+export default function Home ({ allPostsData }: { allPostsData: { date: string, title: string, id: string }[] }) {
   return (
     <Layout home>
       <Head>
@@ -45,5 +46,5 @@ export default function Home({ allPostsData }) {
         </ul>
       </section>
     </Layout>
-  );
+  )
 }
