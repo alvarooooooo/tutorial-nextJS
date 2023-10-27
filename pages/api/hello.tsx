@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from "next"
 /**
  * 
  * @param req is an instance of http.IncomingMessage (https://nodejs.org/api/http.html#http_class_http_incomingmessage)
@@ -5,7 +6,7 @@
  * @param res is  an instance of http.ServerResponse (https://nodejs.org/api/http.html#http_class_http_serverresponse)
  *  plus some helper functions(https://nextjs.org/docs/pages/building-your-application/routing/api-routes)
  */
-export default function handler(req, res) {
+export default function handler(_: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({ text:'Hello' })
 }
 
